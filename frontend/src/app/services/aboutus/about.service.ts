@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 
 export class AboutService {
 
-  apiUrl: string = 'http://localhost:3000/api';
+  // apiUrl: string = 'http://localhost:3000/api';
+  apiUrl:string = "https://angular-portfolio-management.onrender.com/api";
 
   constructor(private http: HttpClient) { }
 

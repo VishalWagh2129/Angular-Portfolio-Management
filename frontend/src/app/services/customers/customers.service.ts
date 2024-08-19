@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CustomersService {
-  private apiUrl = 'http://localhost:3000/api';
+  // private apiUrl = 'http://localhost:3000/api';
+  apiUrl:string = "https://angular-portfolio-management.onrender.com/api";
 
   constructor(private http: HttpClient) { }
 

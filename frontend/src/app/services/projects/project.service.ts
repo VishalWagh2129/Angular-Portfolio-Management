@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class ProjectService {
 
 
-  private baseUrl = 'http://localhost:3000/api';
+  // private baseUrl = 'http://localhost:3000/api';
+  baseUrl:string = "https://angular-portfolio-management.onrender.com/api";
 
   constructor(private http: HttpClient) { }
 

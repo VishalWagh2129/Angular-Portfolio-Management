@@ -9,8 +9,8 @@ import { map } from 'rxjs/operators';
 
 export class AdminService {
 
-    apiUrl: string = 'http://localhost:3000/api';
-    // apiUrl : string = 'https://estore-rp4q.onrender.com/api'
+    // apiUrl: string = 'http://localhost:3000/api';
+    apiUrl:string = "https://angular-portfolio-management.onrender.com/api";
 
     constructor(private http: HttpClient) { }
 
