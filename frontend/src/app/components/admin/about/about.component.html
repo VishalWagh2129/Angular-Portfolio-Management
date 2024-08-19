@@ -1,0 +1,133 @@
+<section class="about-section">
+    <div class="card">
+        <div class="header d-flex justify-content-between align-items-center" *ngIf="!isFormEditable">
+            <h3 class="title">About Us</h3>
+            <button class="btn btn-light edit-btn" (click)="toggleEdit()">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+        <div class="back-btn" *ngIf="isFormEditable">
+            <h4 (click)="back()" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9.57 5.92993L3.5 11.9999L9.57 18.0699" stroke="#3764EB" stroke-width="1.5"
+                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M20.4999 12H3.66992" stroke="#3764EB" stroke-width="1.5" stroke-miterlimit="10"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>Back
+            </h4>
+        </div>
+        <div class="rectangle-box col-12" *ngIf="!isFormEditable">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">Status</label>
+                    <p class="info"><b>{{aboutData.record_status}}</b></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">Designation</label>
+                    <p class="info"><b>{{aboutData.designation}}</b></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">Name</label>
+                    <p class="info"><b>{{aboutData.name}}</b></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">Resume Link</label>
+                    <p class="info"><b><a href="#">{{aboutData.resume}}</a></b></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">LinkedIn Link</label>
+                    <p class="info"><b><a [href]="aboutData.linkedin" target="_blank" rel="noopener noreferrer">
+                        {{aboutData.linkedin}}
+                    </a></b></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="label-info">User image</label>
+                    <p class="info"><b>{{aboutData.image}}</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container custom" *ngIf="isFormEditable">
+            <div class="row">
+                <form [formGroup]="aboutForm" class="col-12">
+                    <div class="row">
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="status" class="mt-2">
+                                    <mat-option *ngFor="let status of ['ACTIVE', 'INACTIVE']" [value]="status">
+                                        {{ status }}
+                                    </mat-option>
+                                </mat-select>
+                                <div *ngIf="submitted && aboutForm.get('status').hasError('required')"
+                                    class="text-danger mt-2">
+                                    Status is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Enter Name" formControlName="name" class="mt-2">
+                                <div *ngIf="submitted && aboutForm.get('name').hasError('required')" class="text-danger mt-2">
+                                    Name is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Designation</mat-label>
+                                <input matInput placeholder="Enter Designation" formControlName="designation" class="mt-2">
+                                <div *ngIf="submitted && aboutForm.get('designation').hasError('required')" class="text-danger mt-2">
+                                    Designation is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Resume Link</mat-label>
+                                <input matInput placeholder="Enter Resume Link" formControlName="resumeLink" class="mt-2">
+                                <div *ngIf="submitted && aboutForm.get('resumeLink').hasError('required')" class="text-danger mt-2">
+                                    Resume Link is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>LinkedIn Link</mat-label>
+                                <input matInput placeholder="Enter Name" formControlName="linkedinLink" class="mt-2">
+                                <div *ngIf="submitted && aboutForm.get('linkedinLink').hasError('required')" class="text-danger mt-2">
+                                    LinkedIn Link is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput placeholder="Enter Description" formControlName="description"
+                                    class="mt-2"></textarea>
+                                <div *ngIf="submitted && aboutForm.get('description').hasError('required')"
+                                    class="text-danger mt-2">
+                                    Description is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-12 mb-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Image</mat-label>
+                                <input matInput placeholder="Enter Image" formControlName="image" class="mt-2">
+                                <div *ngIf="submitted && aboutForm.get('image').hasError('required')" class="text-danger mt-2">
+                                    Iamge Name is required
+                                </div>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12 mb-2">
+                        <button  mat-raised-button color="primary" type="submit"
+                            (click)='onUpdate()'>Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

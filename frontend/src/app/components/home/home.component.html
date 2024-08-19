@@ -1,0 +1,125 @@
+<div class="home">
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="com-col">
+                        <h5 class="title">{{aboutData.designation}}</h5>
+                        <h1 class="name">Hello, My Name is {{aboutData.name}}</h1>
+                        <p class="description">{{aboutData.description}}</p>
+                        <div class="button-group">
+                            <button class="btn btn-warning" onclick="window.location.href='#resume'">Download
+                                Resume</button>
+                            <button class="btn btn-light" (click)="openLinkedin(aboutData.linkedin)">LinkedIn</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-wrapper">
+                        <img [src]="'../../../../assets/images/' + aboutData.image" alt="Vishal Sambhaji Wagh"
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Experience</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" id="project">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Projects</h2>
+                </div>
+            </div>
+            <div class="project-wrap" *ngFor="let data of projectsData">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="project-details">
+                            <h1 class="project-name">{{data.name}}</h1>
+                            <p class="project-description">{{data.description}}</p>
+                            <button class="view-project" (click)="goToLink(data.link)">View Project</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="project-image-wrapper">
+                            <img [src]="'../../../../assets/images/' + data.image" alt="Project Image"
+                                class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="conatct">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Contact Us</h2>
+                </div>
+            </div>
+            <div class="form-container">
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+                    <!-- Name Section -->
+                    <div class="form-group form-group-margin">
+                        <label for="name">Name*</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" />
+                        <span class="text-danger" *ngIf="name?.touched && name?.errors?.['required']">
+                            Name is required
+                        </span>
+                    </div>
+
+                    <!-- Email Section -->
+                    <div class="form-group form-group-margin">
+                        <label for="email">Email*</label>
+                        <input type="text" class="form-control" id="email" formControlName="email" />
+                        <span class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">
+                            Email is required
+                        </span>
+                        <span class="text-danger" *ngIf="email?.touched && email?.errors?.['email']">
+                            Enter a valid email address
+                        </span>
+                    </div>
+
+                    <!-- Message Section -->
+                    <div class="form-group form-group-margin">
+                        <label for="message">Message*</label>
+                        <textarea class="form-control" id="message" formControlName="message" rows="5"></textarea>
+                        <span class="text-danger" *ngIf="message?.touched && message?.errors?.['required']">
+                            Message is required
+                        </span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center form-group-margin">
+                        <button type="submit" class="btn btn-warning" [disabled]="!contactForm.valid">
+                            Send Message
+                        </button>
+                    </div>
+
+                    <!-- Alert Message -->
+                    <div class="alert" [ngClass]="
+                        alertType === 0
+                            ? 'alert-success'
+                            : alertType === 1
+                            ? 'alert-warning'
+                            : 'alert-danger'
+                        " *ngIf="alertMessage !== ''">
+                        {{ alertMessage }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
